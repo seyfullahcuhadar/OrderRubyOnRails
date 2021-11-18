@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @order.currency %>
+</p>
+
+<p>
+  <strong>Gross:</strong>
+  <%= @order.gross %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @order.discount %>
+</p>
+
+<p>
+  <strong>Net:</strong>
+  <%= @order.net %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

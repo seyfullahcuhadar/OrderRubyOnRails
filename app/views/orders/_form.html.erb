@@ -1,0 +1,44 @@
+<%= form_with(model: order) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :currency %>
+  <%= form.select :currency, Order.currencies.keys, {}, class: 'form-select' %>  </div>
+
+  <div class="field">
+    <%= form.label :gross %>
+
+    <%= form.number_field :gross,class:"form-control",id:'grossTextField',min:0,step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discount %>
+    <%= form.number_field :discount,class:"form-control",id:'discountTextField',min:0,step: 0.01 %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :net %>
+    <%= form.text_field :net,class:"form-control" ,id:'netTextField',:readonly => true %>
+  </div>
+    <div class="field form-group">
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id,Category.all,:id,:name,{include_blank: 'Select a category' },{class: "form-select" } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary"%>
+  </div>
+<% end %>
+
+<%= javascript_pack_tag 'order'%>
